@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+
+
+struct Date
+{
+    int d,m,y;
+};
+
+
+class Worker{
+    public:
+    int id;
+    string name;
+    string surname;
+    Date birthday;
+    
+
+    void getData();
+
+    Worker()
+    {
+        id = 17;
+
+        name="Janusz";
+
+        surname ="Nowak";
+
+        birthday = {15,10,2021};
+    }
+
+};
+
+void Worker::getData()
+{
+    cout<<"ID:"<<Worker::id;
+    cout<<"\nImie i nazwisko: "<<Worker::name<<"-"<<Worker::surname;
+    cout<<"\nData urodzenia: "<<Worker::birthday.d<<"-"<<Worker::birthday.m<<"-"<<Worker::birthday.y<<endl;
+}
+
+int main()
+{
+
+    setlocale(LC_CTYPE,"polish");
+
+    Worker nowak;
+
+    //nowak.getData();
+
+    Worker * wsk;
+    wsk= &nowak;
+    wsk->getData();
+
+
+    return 0;
+}
