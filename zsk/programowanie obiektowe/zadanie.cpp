@@ -1,50 +1,56 @@
 #include <iostream>
-
 using namespace std;
 
-class Rectangle{
-
-public:
-
-float width,height;
-
-float field();
-float circuit();
-void result();
-
+class Character{
+	public:
+		string name;
+		virtual void go() = 0;
+		virtual void stop() = 0;
+		string showName();
 };
 
-float Rectangle::circuit(){
-
-    float circuit=(2*width)+(2*height);
-
-    return circuit;
+class Human : public Character{
+	public:
+		void go() {
+			cout<<"czlowiek idzie "<<endl;
+		}
+		void stop() {
+			cout<<"czlowiek sie zatrzymuje "<<endl;
+		}
+		string showName() {
+			return name;
+		}
 };
 
-float Rectangle::field(){
-
-    float field=height*width;
-
-    return field;
+class Bear : public Character{
+	public:
+		void go() {
+			cout<<"mis idzie \n ";
+		}
+		void stop() {
+			cout<<"mis sie zatrzymuje "<<endl;
+		}
 };
 
-void Rectangle::result(){
-
-    cout<<"pole wynosi "<<field()<<"a obwod wynosi"<<circuit();
-};
-
-int main(){
-
-    Rectangle p;
-
-    cout<<"podaj szerokosc "<<endl;
-    cin>>p.width;
-    cout<<"podaj wysokosc "<<endl;
-    cin>>p.height;
-
-    p.result();
-
-
-
-    return 0;
+int main() {
+	
+//	Character postac;
+	//postac.go();
+	
+	Human czlowiek;
+	czlowiek.go();
+	
+	Character * wsk = &czlowiek;
+	wsk->go();
+	Bear niedzwiadek;
+	
+	wsk=&niedzwiadek;
+	wsk->go();
+	
+	wsk=&czlowiek;
+	wsk->name = "Janusz";
+	cout<<czlowiek.showName();
+	
+	
+	return 0;
 }
